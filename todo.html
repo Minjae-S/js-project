@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #add-btn{
+            padding: 5px 10px;
+            border: 0;
+            background: #f80; color:white;
+            border-radius: 5px;
+        }
+        ul{
+            padding: 0;
+            list-style-position: inside;
+        }
+        li{
+            border-bottom: 1px solid #999;
+            padding: 5px 0;
+        }
+        .active {background-color: #abc; }
+        
+
+
+    </style>
+</head>
+<body>
+
+    <h1 id="title">할 일 목록</h1> <br>
+    <button id="add-btn">목록 추가</button> 
+
+    <ul id="list">
+       
+
+
+    </ul>
+    <script>
+        const title = document.getElementById("title");
+        const list = document.getElementById('list');
+        const li = list.getElementsByTagName('li');
+        const addBtn =document.getElementById('add-btn');
+
+        list.addEventListener('click',activeItem);
+
+        function activeItem(event) {
+            if(event.target.nodeName == 'LI'){
+                title.innerHTML = event.target.innerText;
+            }
+           
+            for(var i =0; i<event.target.parentNode.children.length; i++){
+                event.target.parentNode.children[i].removeAttribute('class');
+                
+            }
+            event.target.setAttribute('class','active');
+        }
+        addBtn.addEventListener('click',function() {
+            const txt = prompt('제목입력');
+            list.innerHTML += '<li>'+txt + '</li>';
+        });
+    </script>    
+</body>
+</html>
